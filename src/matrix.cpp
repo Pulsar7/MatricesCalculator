@@ -100,3 +100,43 @@ TwoDimensionalMatrix TwoDimensionalMatrix::calc_sum(TwoDimensionalMatrix matrixB
 
     return result_matrix;
 }
+
+TwoDimensionalMatrix TwoDimensionalMatrix::calc_product(TwoDimensionalMatrix matrixB) {
+    TwoDimensionalMatrix result_matrix;
+
+    if (this->get_rows() != matrixB.get_columns()) {
+        printf("<Multiply-Error> Can't multiply two matrices with an invalid amount of rows and columns!");
+        return result_matrix;
+    }
+
+    std::vector<int> current_row;
+    int B_column_counter;
+    int current_column;
+    for (std::vector<int> rowA : this->matrix) {
+        ////////////////// WRONG ///////////////////
+        /*B_column_counter = 0;
+        current_row.clear();
+        current_column = 0;
+        for (int A_element : rowA) {
+            for (std::vector<int> rowB : matrixB.matrix) {
+                current_column += rowB[B_column_counter] * A_element;
+            }
+            B_column_counter++;
+            current_row.push_back(current_column);
+        }
+        result_matrix.matrix.push_back(current_row);*/
+    }
+
+    return result_matrix;
+}
+
+void TwoDimensionalMatrix::import_into_static_array(int** static_array) {
+    int rows = this->get_rows();
+    int columns = this->get_columns();
+
+    for (int row = 0; row < rows; row++) {
+        for (int col = 0; col < columns; col++) {
+            static_array[row][col] = this->matrix[row][col];
+        }
+    }
+}

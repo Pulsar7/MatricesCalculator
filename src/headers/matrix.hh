@@ -12,10 +12,12 @@ public:
     ~TwoDimensionalMatrix(); // Desctructor
 
     TwoDimensionalMatrix calc_sum(TwoDimensionalMatrix matrixB);
+    TwoDimensionalMatrix calc_product(TwoDimensionalMatrix matrixB);
     int get_rows();
     int get_columns();
     bool add_row(int* row, size_t columns);
     void show();
+    void import_into_static_array(int** static_array);
 
     // Variables
 

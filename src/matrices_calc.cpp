@@ -13,14 +13,16 @@ int main(int argc, const char** argv) {
 
     TwoDimensionalMatrix matrixB;
 
-    int Brow1[] = {4,5,6};
-    int Brow2[] = {7,8,9};
+    int Brow1[] = {1,4};
+    int Brow2[] = {2,5};
+    int Brow3[] = {3,6};
 
     matrixB.add_row(Brow1,sizeof(Brow1)/sizeof(int));
     matrixB.add_row(Brow2,sizeof(Brow2)/sizeof(int));
+    matrixB.add_row(Brow3,sizeof(Brow3)/sizeof(int));
     matrixB.show();
 
-    TwoDimensionalMatrix result_matrix = matrixA.calc_sum(matrixB);
+    TwoDimensionalMatrix result_matrix = matrixA.calc_product(matrixB);
 
     result_matrix.show();
 
