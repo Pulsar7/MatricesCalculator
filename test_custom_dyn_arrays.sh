@@ -2,7 +2,7 @@
 
 OUTPUT_FILENAME="CustomDynamicArrays_MatricesCalculator"
 
-g++ -I custom_dynamic_arrays/headers/ -o "$OUTPUT_FILENAME" custom_dynamic_arrays/*.cpp
+g++ -o "$OUTPUT_FILENAME" custom_dynamic_arrays/*.cpp -I custom_dynamic_arrays/_headers/
 
 chmod +x "$OUTPUT_FILENAME"
 ./"$OUTPUT_FILENAME"
