@@ -28,5 +28,15 @@ private:
     std::vector<std::vector<int>> matrix;
 };
 
+class ThreeDimensionalMatrix {
+
+public:
+    ThreeDimensionalMatrix(); // Constructor
+    ~ThreeDimensionalMatrix(); // Desctructor
+
+
+
+};
+
 
 #endif // MATRIX_HH
