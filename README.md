@@ -19,7 +19,7 @@ A C++ project that focuses on the calculation with matrices. Functions:
 - Export a given 2D matrix into a static-int array
 
 At first I tried to store the matrices in my own programmed dynamic lists (concatenated lists), but then decided to use the `std::vector` **Container-Class from the Standard Template Library (STL) of C++** for efficiency and security reasons.
-But, if you're still interested in seeing this project using a custom **Dynamic-Array-Management**, see `custom_dynamic_arrays/`
+If you're still interested in using this project with custom Dynamic Array Management, you can explore the `custom_dynamic_arrays` directory.
 
 - The C++ file in which the actual arithmetic operations are performed is called `two_dimensional_matrix_operations.cpp` for the 2-dimensional matrices.
 
