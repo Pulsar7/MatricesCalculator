@@ -103,34 +103,41 @@ TwoDimensionalMatrix TwoDimensionalMatrix::calc_sum(TwoDimensionalMatrix matrixB
 
 TwoDimensionalMatrix TwoDimensionalMatrix::calc_product(TwoDimensionalMatrix matrixB) {
     TwoDimensionalMatrix result_matrix;
+    int A_rows = this->get_rows();
+    int A_cols = this->get_columns();
+    int B_rows = matrixB.get_rows();
+    int B_cols = matrixB.get_columns();
 
-    if (this->get_rows() != matrixB.get_columns()) {
+    if (A_rows != B_cols) {
         printf("<Multiply-Error> Can't multiply two matrices with an invalid amount of rows and columns!");
         return result_matrix;
     }
 
     std::vector<int> current_row;
-    int B_column_counter;
-    int current_column;
-    for (std::vector<int> rowA : this->matrix) {
-        ////////////////// WRONG ///////////////////
-        /*B_column_counter = 0;
-        current_row.clear();
-        current_column = 0;
-        for (int A_element : rowA) {
-            for (std::vector<int> rowB : matrixB.matrix) {
-                current_column += rowB[B_column_counter] * A_element;
+
+    int col_counter = 0;
+    int new_element = 0;
+    
+    for (std::vector<int> row : this->matrix) {
+        for (int i = 0; i < A_rows; i++) {
+            int row_counter = 0;
+            for (int element : row) {
+                new_element += element * matrixB.matrix[row_counter][col_counter];
+                row_counter++;
             }
-            B_column_counter++;
-            current_row.push_back(current_column);
+            col_counter++;
+            current_row.push_back(new_element);
+            new_element = 0;
         }
-        result_matrix.matrix.push_back(current_row);*/
+        col_counter = 0;
+        result_matrix.matrix.push_back(current_row);
+        current_row.clear();
     }
 
     return result_matrix;
 }
 
-void TwoDimensionalMatrix::import_into_static_array(int** static_array) {
+void TwoDimensionalMatrix::export_as_static_array(int** static_array) {
     int rows = this->get_rows();
     int columns = this->get_columns();
 
