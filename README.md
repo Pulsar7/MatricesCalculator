@@ -4,6 +4,7 @@
 <h2>Table of contents</h2>
 
 - [Description](#description)
+- [Custom Dynamic-Arrays](#custom-dynamic-arrays)
 - [Examples (2D-matrices)](#examples-2d-matrices)
   - [Add two matrices](#add-two-matrices)
   - [Multiply two matrices](#multiply-two-matrices)
@@ -18,10 +19,13 @@ A C++ project that focuses on the calculation with matrices. Functions:
 - Multiply two 2D matrices
 - Export a given 2D matrix into a static-int array
 
+
+The C++ file in which the actual arithmetic operations are performed is called `two_dimensional_matrix_operations.cpp` for the 2-dimensional matrices.
+
+## Custom Dynamic-Arrays
+
 At first I tried to store the matrices in my own programmed dynamic lists (concatenated lists), but then decided to use the `std::vector` **Container-Class from the Standard Template Library (STL) of C++** for efficiency and security reasons.
 If you're still interested in using this project with custom Dynamic Array Management, you can explore the `custom_dynamic_arrays` directory.
-
-- The C++ file in which the actual arithmetic operations are performed is called `two_dimensional_matrix_operations.cpp` for the 2-dimensional matrices.
 
 
 ## Examples (2D-matrices)

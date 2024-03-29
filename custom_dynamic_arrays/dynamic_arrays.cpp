@@ -68,3 +68,60 @@ bool DynamicArray<T>::append(T element) {
 
     return true;
 }
+
+template<typename T>
+int DynamicArray<T>::get_len() {
+    int counter = 0;
+    if (this->head_ptr == nullptr) {
+        // No elements in array
+        return counter;
+    }
+
+    DynamicArrayNode<T>* current_ptr = this->head_ptr;
+    // Iterate whole list
+    while (current_ptr != nullptr) {
+        counter++;
+        current_ptr = current_ptr->next_ptr;
+    }
+ 
+    return counter;
+}
+
+template<typename T>
+bool DynamicArray<T>::remove(int index) {
+    if (index > this->get_len()-1) {
+        // Index is bigger than the actual length of the list
+        return false;
+    }
+
+    int counter = 0;
+    DynamicArrayNode<T>* current_ptr = this->head_ptr;
+    while (current_ptr != nullptr) {
+        if (counter == index) {
+            break;
+        }
+        current_ptr = current_ptr->next_ptr;
+        counter++;
+    }
+
+    if (current_ptr->next_ptr == nullptr) {
+        // current_ptr is the last element in the list
+        current_ptr->previous_ptr->next_ptr = nullptr; // previous_ptr is now the last element in the list
+        free(current_ptr);
+        return true;
+    }
+
+    if (current_ptr->previous_ptr == nullptr) {
+        // current_ptr is the first element in the list
+        current_ptr->next_ptr->previous_ptr = nullptr; // next_ptr is not the first element in the list
+        free(current_ptr);
+        return true;
+    }
+
+    // Current Node is between two nodes
+    current_ptr->next_ptr->previous_ptr = current_ptr->previous_ptr;
+    current_ptr->previous_ptr->next_ptr = current_ptr->next_ptr;
+    free(current_ptr);
+
+    return true;
+}

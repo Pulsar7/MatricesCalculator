@@ -22,6 +22,8 @@ public:
 
     bool clear(); // Delete all elements in array
     bool append(T element); // Append element to array
+    bool remove(int index); // Remove element from array by its index
+    int get_len(); // Get amount of elements in array
 
     // Variables
 
