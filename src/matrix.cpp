@@ -102,11 +102,16 @@ TwoDimensionalMatrix TwoDimensionalMatrix::calc_sum(TwoDimensionalMatrix matrixB
 }
 
 TwoDimensionalMatrix TwoDimensionalMatrix::calc_product(TwoDimensionalMatrix matrixB) {
+    /*
+        Calulate the product of two 2-Dimensional matrices
+
+        „result_matrix = this->matrix * matrixB”
+    */
     TwoDimensionalMatrix result_matrix;
     int A_rows = this->get_rows();
     int A_cols = this->get_columns();
-    int B_rows = matrixB.get_rows();
-    int B_cols = matrixB.get_columns();
+    int B_rows = matrixB.get_rows(); // necessary?
+    int B_cols = matrixB.get_columns(); // necessary?
 
     if (A_rows != B_cols) {
         printf("<Multiply-Error> Can't multiply two matrices with an invalid amount of rows and columns!");
@@ -118,19 +123,19 @@ TwoDimensionalMatrix TwoDimensionalMatrix::calc_product(TwoDimensionalMatrix mat
     int col_counter = 0;
     int new_element = 0;
     
-    for (std::vector<int> row : this->matrix) {
+    for (std::vector<int> row : this->matrix) { // Iterate rows of this->matrix
         for (int i = 0; i < A_rows; i++) {
             int row_counter = 0;
-            for (int element : row) {
+            for (int element : row) { // Iterate every row-element of this->matrix
                 new_element += element * matrixB.matrix[row_counter][col_counter];
                 row_counter++;
             }
             col_counter++;
-            current_row.push_back(new_element);
+            current_row.push_back(new_element); // Add new element in row for `result_matrix`
             new_element = 0;
         }
         col_counter = 0;
-        result_matrix.matrix.push_back(current_row);
+        result_matrix.matrix.push_back(current_row); // Add new row for `result_matrix`
         current_row.clear();
     }
 
@@ -146,4 +151,8 @@ void TwoDimensionalMatrix::export_as_static_array(int** static_array) {
             static_array[row][col] = this->matrix[row][col];
         }
     }
+}
+
+void TwoDimensionalMatrix::import_static_array(int** static_array, int rows, int columns) {
+    // ???
 }

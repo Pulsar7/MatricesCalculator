@@ -18,6 +18,7 @@ public:
     bool add_row(int* row, size_t columns);
     void show();
     void export_as_static_array(int** static_array);
+    void import_static_array(int** static_array, int rows, int columns);
 
     // Variables
 
