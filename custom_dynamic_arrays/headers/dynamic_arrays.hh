@@ -1,16 +1,19 @@
 #ifndef DYNAMIC_ARRAYS_HH
 #define DYNAMIC_ARRAYS_HH
 #include <stdlib.h>
+#include <stdio.h>
 
 //
-typedef struct DynamicArrayNode {
-    void* element;
-    struct DynamicArrayNode* next_ptr;
-    struct DynamicArrayNode* previous_ptr;
-} DynamicArrayNode;
+template<typename T>
+struct DynamicArrayNode {
+    T element;
+    struct DynamicArrayNode<T>* next_ptr;
+    struct DynamicArrayNode<T>* previous_ptr;
+};
 //
 
 
+template<typename T>
 class DynamicArray {
 
 public:
@@ -18,6 +21,7 @@ public:
     ~DynamicArray(); // Desctructor
 
     bool clear(); // Delete all elements in array
+    bool append(T element); // Append element to array
 
     // Variables
 
@@ -25,7 +29,7 @@ public:
 private:
 
     // Variables
-    DynamicArrayNode* head_ptr = nullptr;
+    DynamicArrayNode<T>* head_ptr = nullptr;
 };
 
 
