@@ -8,5 +8,7 @@ int main(int argc, const char** argv) {
 
     matrix.add_row(row,sizeof(row)/sizeof(int));
 
+    printf("ADDED ROW\n");
+
     return 0;
 }

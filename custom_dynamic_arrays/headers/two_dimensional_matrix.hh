@@ -38,7 +38,6 @@ bool TwoDimensionalMatrix<T>::add_row(T* row, size_t columns) {
         for (int counter = 0; counter < columns; counter++) {
             dyn_array_row.append(row[counter]);
         }
-
         this->matrix.append(dyn_array_row);
         return true;
     } catch (const std::exception& e) {

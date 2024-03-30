@@ -32,21 +32,25 @@ private:
 
     // Variables
     DynamicArrayNode<T>* head_ptr = nullptr;
+    bool cleared;
 };
 
 
 template<typename T>
 DynamicArray<T>::DynamicArray() {
-
+    this->cleared = false;
 }
 
 template<typename T>
 DynamicArray<T>::~DynamicArray() {
-    this->clear(); // Automatically deallocate space
+    if (!this->cleared) {
+        this->clear(); // Automatically deallocate space
+    }
 }
 
 template<typename T>
 bool DynamicArray<T>::clear() {
+    printf("CLEARING...\n");
     if (this->head_ptr == nullptr) {
         // Nothing to delete. Array is empty.
         return false;
@@ -60,6 +64,11 @@ bool DynamicArray<T>::clear() {
 
     free(current_ptr);
 
+    this->cleared = true;
+
+    
+
+
     return true;
 }
 
@@ -71,7 +80,7 @@ bool DynamicArray<T>::append(T element) {
     DynamicArrayNode<T>* former_last_ptr = nullptr;
 
     // Allocate memory for the new node
-    node_ptr = (DynamicArrayNode<T>*)malloc(sizeof(DynamicArrayNode<T>));
+    node_ptr = (DynamicArrayNode<T>*)calloc(1,sizeof(DynamicArrayNode<T>)); // or malloc(sizeof(DynamicArrayNode<T>)); - probably better
     if (node_ptr == nullptr) {
         printf("<AllocationError> Couldn't allocate new space for node!\n");
         return false;
@@ -98,7 +107,7 @@ bool DynamicArray<T>::append(T element) {
         node_ptr->previous_ptr = nullptr;
     }
 
-    current_ptr->element = element;
+    node_ptr->element = element;
 
     return true;
 }
