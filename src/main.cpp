@@ -2,7 +2,7 @@
 #include <chrono>
 
 
-/*
+int main(int argc, const char** argv) {
     auto start = std::chrono::system_clock::now();
 
     TwoDimensionalMatrix matrixA;
@@ -30,4 +30,6 @@
     auto delta = std::chrono::system_clock::now() - start;
     auto runtime_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(delta).count();
     std::cout << "Runtime=" << runtime_microseconds << " microseconds" << std::endl;
-}*/
+
+    return 0;
+}
