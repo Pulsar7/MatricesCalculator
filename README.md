@@ -89,6 +89,6 @@ result_matrix.show();
 
 ## ToDo
 
-- [ ] Add arithmetic operations for 3-Dimensional matrices
-  - [ ] Add multiplication of 3D-matrices
-  - [ ] Add addition/subtraction of 3D-matrices
+- [x] Add arithmetic operations for 3-Dimensional matrices
+  - [x] Add multiplication of 3D-matrices
+  - [x] Add addition/subtraction of 3D-matrices
