@@ -6,8 +6,8 @@
 - [Description](#description)
 - [Custom Dynamic-Arrays](#custom-dynamic-arrays)
 - [Examples (2D-matrices)](#examples-2d-matrices)
-  - [Add two matrices](#add-two-matrices)
-  - [Multiply two matrices](#multiply-two-matrices)
+  - [Add two integer-matrices](#add-two-integer-matrices)
+  - [Multiply two integer-matrices](#multiply-two-integer-matrices)
 - [ToDo](#todo)
 
 
@@ -31,7 +31,7 @@ If you're still interested in using this project with custom Dynamic Array Manag
 ## Examples (2D-matrices)
 
 
-### Add two matrices
+### Add two integer-matrices
 
 ```CPP
 TwoDimensionalMatrix<int> matrixA; // Create Object
@@ -57,7 +57,7 @@ TwoDimensionalMatrix<int> result_matrix = matrixA.calc_sum(matrixB);
 result_matrix.show();
 ```
 
-### Multiply two matrices
+### Multiply two integer-matrices
 
 ```CPP
 TwoDimensionalMatrix<int> matrixA; // Create Object
