@@ -1,15 +1,61 @@
-#include "headers/matrix.hh"
+#ifndef TWO_DIMENSIONAL_MATRIX_HH
+#define TWO_DIMENSIONAL_MATRIX_HH
+#include <type_traits>
+#include <stdio.h>
+#include <vector>
+#include <iostream>
+#include <stdexcept> // 
+
+// Define a type trait to check if a type is a numeric type
+template <typename T>
+struct is_numeric {
+    static constexpr bool value =
+        std::is_arithmetic<T>::value &&
+        !std::is_same<T, bool>::value &&
+        !std::is_same<T, char>::value &&
+        !std::is_same<T, char16_t>::value &&
+        !std::is_same<T, char32_t>::value &&
+        !std::is_same<T, wchar_t>::value;
+};
+
+template <typename T, typename U = std::enable_if_t<is_numeric<T>::value>>
+class TwoDimensionalMatrix {
+
+public:
+    TwoDimensionalMatrix(); // Constructor
+    ~TwoDimensionalMatrix(); // Desctructor
+
+    TwoDimensionalMatrix<T,U> calc_sum(TwoDimensionalMatrix<T,U> matrixB);
+    TwoDimensionalMatrix<T,U> calc_product(TwoDimensionalMatrix<T,U> matrixB);
+    int get_rows();
+    int get_columns();
+    bool add_row(T* row, size_t columns);
+    void show();
+    void export_as_static_array(T** static_array);
+    void import_static_array(T** static_array, int rows, int columns);
+
+    // Variables
+
+private:
+
+    // Variables
+    std::vector<std::vector<T>> matrix;
+};
 
 
-TwoDimensionalMatrix::TwoDimensionalMatrix() {
+
+template<typename T, typename U>
+TwoDimensionalMatrix<T,U>::TwoDimensionalMatrix() {
     // Constructor
 }
 
-TwoDimensionalMatrix::~TwoDimensionalMatrix() {
+template<typename T, typename U>
+TwoDimensionalMatrix<T,U>::~TwoDimensionalMatrix() {
     // Destructor
 }
 
-bool TwoDimensionalMatrix::add_row(int* row, size_t columns) {
+template<typename T, typename U>
+bool TwoDimensionalMatrix<T,U>::add_row(T* row, size_t columns) {
     try {
         std::vector<int> vector_row;
 
@@ -25,7 +71,8 @@ bool TwoDimensionalMatrix::add_row(int* row, size_t columns) {
     return false;
 }
 
-void TwoDimensionalMatrix::show() {
+template<typename T, typename U>
+void TwoDimensionalMatrix<T,U>::show() {
     printf("[");
     int row_counter = 0;
     for (std::vector<int> row : this->matrix) {
@@ -49,7 +96,8 @@ void TwoDimensionalMatrix::show() {
     printf("]\n");
 }
 
-int TwoDimensionalMatrix::get_rows() {
+template<typename T, typename U>
+int TwoDimensionalMatrix<T,U>::get_rows() {
     int row_counter = 0;
 
     for (std::vector<int> row : this->matrix) {
@@ -59,7 +107,8 @@ int TwoDimensionalMatrix::get_rows() {
     return row_counter;
 }
 
-int TwoDimensionalMatrix::get_columns() {
+template<typename T, typename U>
+int TwoDimensionalMatrix<T,U>::get_columns() {
     int column_counter = 0;
     
     if (this->matrix.size() == 0) {
@@ -73,7 +122,8 @@ int TwoDimensionalMatrix::get_columns() {
     return column_counter;
 }
 
-TwoDimensionalMatrix TwoDimensionalMatrix::calc_sum(TwoDimensionalMatrix matrixB) {
+template<typename T, typename U>
+TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_sum(TwoDimensionalMatrix<T,U> matrixB) {
     TwoDimensionalMatrix result_matrix;
 
     if (this->get_rows() != matrixB.get_rows()) {
@@ -101,7 +151,8 @@ TwoDimensionalMatrix TwoDimensionalMatrix::calc_sum(TwoDimensionalMatrix matrixB
     return result_matrix;
 }
 
-TwoDimensionalMatrix TwoDimensionalMatrix::calc_product(TwoDimensionalMatrix matrixB) {
+template<typename T, typename U>
+TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_product(TwoDimensionalMatrix<T,U> matrixB) {
     /*
         Calulate the product of two 2-Dimensional matrices
 
@@ -142,7 +193,8 @@ TwoDimensionalMatrix TwoDimensionalMatrix::calc_product(TwoDimensionalMatrix mat
     return result_matrix;
 }
 
-void TwoDimensionalMatrix::export_as_static_array(int** static_array) {
+template<typename T, typename U>
+void TwoDimensionalMatrix<T,U>::export_as_static_array(T** static_array) {
     int rows = this->get_rows();
     int columns = this->get_columns();
 
@@ -153,6 +205,10 @@ void TwoDimensionalMatrix::export_as_static_array(int** static_array) {
     }
 }
 
-void TwoDimensionalMatrix::import_static_array(int** static_array, int rows, int columns) {
+template<typename T, typename U>
+void TwoDimensionalMatrix<T,U>::import_static_array(T** static_array, int rows, int columns) {
     // ???
 }
+
+
+#endif // TWO_DIMENSIONAL_MATRIX_HH

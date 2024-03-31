@@ -5,7 +5,7 @@
 int main(int argc, const char** argv) {
     auto start = std::chrono::system_clock::now();
 
-    TwoDimensionalMatrix matrixA;
+    TwoDimensionalMatrix<int> matrixA;
 
     int Arow1[] = {23,201,2333};
     int Arow2[] = {43,532,6348};
@@ -14,7 +14,7 @@ int main(int argc, const char** argv) {
     matrixA.add_row(Arow2,sizeof(Arow2)/sizeof(int));
     matrixA.show();
 
-    TwoDimensionalMatrix matrixB;
+    TwoDimensionalMatrix<int> matrixB;
 
     int Brow1[] = {13498,449,333};
     int Brow2[] = {2393,500};
@@ -23,7 +23,7 @@ int main(int argc, const char** argv) {
     matrixB.add_row(Brow2,sizeof(Brow2)/sizeof(int));
     matrixB.show();
 
-    TwoDimensionalMatrix result_matrix = matrixA.calc_sum(matrixB);
+    TwoDimensionalMatrix<int> result_matrix = matrixA.calc_sum(matrixB);
 
     result_matrix.show();
 
