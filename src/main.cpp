@@ -5,26 +5,16 @@
 int main(int argc, const char** argv) {
     auto start = std::chrono::system_clock::now();
 
-    TwoDimensionalMatrix<int> matrixA;
+    TwoDimensionalMatrix<double> matrixA;
 
-    int Arow1[] = {1,2,3};
-    int Arow2[] = {4,5,6};
+    double Arow1[] = {1.0,2.0,3.0};
+    double Arow2[] = {4.0,5.0,6.0};
 
-    matrixA.add_row(Arow1,sizeof(Arow1)/sizeof(int));
-    matrixA.add_row(Arow2,sizeof(Arow2)/sizeof(int));
+    matrixA.add_row(Arow1,sizeof(Arow1)/sizeof(double));
+    matrixA.add_row(Arow2,sizeof(Arow2)/sizeof(double));
     matrixA.show();
 
-    TwoDimensionalMatrix<int> matrixB;
-
-    int Brow1[] = {1,2,3};
-    int Brow2[] = {4,5,6};
-
-    matrixB.add_row(Brow1,sizeof(Brow1)/sizeof(int));
-    matrixB.add_row(Brow2,sizeof(Brow2)/sizeof(int));
-    matrixB.show();
-
-    TwoDimensionalMatrix<int> result_matrix = matrixA.calc_difference(matrixB);
-
+    TwoDimensionalMatrix<double> result_matrix = matrixA.calc_scalar_product(1.5);
     result_matrix.show();
 
     auto delta = std::chrono::system_clock::now() - start;

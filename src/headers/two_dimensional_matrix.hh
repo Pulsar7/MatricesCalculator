@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
-#include <stdexcept> // 
+#include <stdexcept>
 
 // Define a type trait to check if a type is a numeric type
 template <typename T>
@@ -28,6 +28,7 @@ public:
     TwoDimensionalMatrix<T,U> calc_sum(TwoDimensionalMatrix<T,U> matrixB);
     TwoDimensionalMatrix<T,U> calc_difference(TwoDimensionalMatrix<T,U> matrixB);
     TwoDimensionalMatrix<T,U> calc_product(TwoDimensionalMatrix<T,U> matrixB);
+    TwoDimensionalMatrix<T,U> calc_scalar_product(T scalar);
     int get_rows();
     int get_columns();
     bool add_row(T* row, size_t columns);
@@ -58,7 +59,7 @@ TwoDimensionalMatrix<T,U>::~TwoDimensionalMatrix() {
 template<typename T, typename U>
 bool TwoDimensionalMatrix<T,U>::add_row(T* row, size_t columns) {
     try {
-        std::vector<int> vector_row;
+        std::vector<T> vector_row;
 
         for (int counter = 0; counter < columns; counter++) {
             vector_row.push_back(row[counter]);
@@ -76,13 +77,13 @@ template<typename T, typename U>
 void TwoDimensionalMatrix<T,U>::show() {
     printf("[");
     int row_counter = 0;
-    for (std::vector<int> row : this->matrix) {
+    for (std::vector<T> row : this->matrix) {
         int counter = 0;
         row_counter++;
         printf("\n  [");
-        for (int element : row) {
+        for (T element : row) {
             counter++;
-            printf("%d",element);
+            std::cout << element;
             if (counter != row.size()) {
                 printf(",");
             }
@@ -188,7 +189,7 @@ TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_product(TwoDimensional
 
         „result_matrix = this->matrix * matrixB”
     */
-    TwoDimensionalMatrix result_matrix;
+    TwoDimensionalMatrix<T,U> result_matrix;
     int A_rows = this->get_rows();
     int A_cols = this->get_columns();
     int B_rows = matrixB.get_rows(); // necessary?
@@ -199,15 +200,15 @@ TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_product(TwoDimensional
         return result_matrix;
     }
 
-    std::vector<int> current_row;
+    std::vector<T> current_row;
 
     int col_counter = 0;
     int new_element = 0;
     
-    for (std::vector<int> row : this->matrix) { // Iterate rows of this->matrix
+    for (std::vector<T> row : this->matrix) { // Iterate rows of this->matrix
         for (int i = 0; i < A_rows; i++) {
             int row_counter = 0;
-            for (int element : row) { // Iterate every row-element of this->matrix
+            for (T element : row) { // Iterate every row-element of this->matrix
                 new_element += element * matrixB.matrix[row_counter][col_counter];
                 row_counter++;
             }
@@ -216,6 +217,29 @@ TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_product(TwoDimensional
             new_element = 0;
         }
         col_counter = 0;
+        result_matrix.matrix.push_back(current_row); // Add new row for `result_matrix`
+        current_row.clear();
+    }
+
+    return result_matrix;
+}
+
+template<typename T, typename U>
+TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_scalar_product(T scalar) {
+    /*
+        Calculate the scalar-product
+
+        „result_matrix = this->matrix * scalar”
+
+    */
+    TwoDimensionalMatrix<T,U> result_matrix;
+
+    std::vector<T> current_row;
+
+    for (std::vector<T> row : this->matrix) {
+        for (T element : row) { // Iterate every row-element of this->matrix
+            current_row.push_back(element*scalar);
+        }
         result_matrix.matrix.push_back(current_row); // Add new row for `result_matrix`
         current_row.clear();
     }
