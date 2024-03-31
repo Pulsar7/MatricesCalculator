@@ -26,6 +26,7 @@ public:
     ~TwoDimensionalMatrix(); // Desctructor
 
     TwoDimensionalMatrix<T,U> calc_sum(TwoDimensionalMatrix<T,U> matrixB);
+    TwoDimensionalMatrix<T,U> calc_difference(TwoDimensionalMatrix<T,U> matrixB);
     TwoDimensionalMatrix<T,U> calc_product(TwoDimensionalMatrix<T,U> matrixB);
     int get_rows();
     int get_columns();
@@ -124,7 +125,7 @@ int TwoDimensionalMatrix<T,U>::get_columns() {
 
 template<typename T, typename U>
 TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_sum(TwoDimensionalMatrix<T,U> matrixB) {
-    TwoDimensionalMatrix result_matrix;
+    TwoDimensionalMatrix<T,U> result_matrix;
 
     if (this->get_rows() != matrixB.get_rows()) {
         printf("<Sum-Error> Can't add two matrices with different amount of rows!\n");
@@ -137,11 +138,40 @@ TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_sum(TwoDimensionalMatr
     }
     
     int row_counter = 0;
-    for (std::vector<int> Arow : this->matrix) {
-        std::vector<int> current_row;
+    for (std::vector<T> Arow : this->matrix) {
+        std::vector<T> current_row;
         int column_counter = 0;
         for (int element : Arow) {
             current_row.push_back(Arow[column_counter]+matrixB.matrix[row_counter][column_counter]);
+            column_counter++;
+        }
+        result_matrix.matrix.push_back(current_row);
+        row_counter++;
+    }
+
+    return result_matrix;
+}
+
+template<typename T, typename U>
+TwoDimensionalMatrix<T,U> TwoDimensionalMatrix<T,U>::calc_difference(TwoDimensionalMatrix<T,U> matrixB) {
+    TwoDimensionalMatrix<T,U> result_matrix;
+
+    if (this->get_rows() != matrixB.get_rows()) {
+        printf("<Sum-Error> Can't subtract two matrices with different amount of rows!\n");
+        return result_matrix;
+    }
+
+    if (this->get_columns() != matrixB.get_columns()) {
+        printf("<Sum-Error> Can't subtract two matrices with different amount of columns!\n");
+        return result_matrix;
+    }
+    
+    int row_counter = 0;
+    for (std::vector<T> Arow : this->matrix) {
+        std::vector<T> current_row;
+        int column_counter = 0;
+        for (int element : Arow) {
+            current_row.push_back(Arow[column_counter]-matrixB.matrix[row_counter][column_counter]);
             column_counter++;
         }
         result_matrix.matrix.push_back(current_row);

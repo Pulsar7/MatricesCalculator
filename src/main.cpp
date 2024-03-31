@@ -7,8 +7,8 @@ int main(int argc, const char** argv) {
 
     TwoDimensionalMatrix<int> matrixA;
 
-    int Arow1[] = {23,201,2333};
-    int Arow2[] = {43,532,6348};
+    int Arow1[] = {1,2,3};
+    int Arow2[] = {4,5,6};
 
     matrixA.add_row(Arow1,sizeof(Arow1)/sizeof(int));
     matrixA.add_row(Arow2,sizeof(Arow2)/sizeof(int));
@@ -16,14 +16,14 @@ int main(int argc, const char** argv) {
 
     TwoDimensionalMatrix<int> matrixB;
 
-    int Brow1[] = {13498,449,333};
-    int Brow2[] = {2393,500};
+    int Brow1[] = {1,2,3};
+    int Brow2[] = {4,5,6};
 
     matrixB.add_row(Brow1,sizeof(Brow1)/sizeof(int));
     matrixB.add_row(Brow2,sizeof(Brow2)/sizeof(int));
     matrixB.show();
 
-    TwoDimensionalMatrix<int> result_matrix = matrixA.calc_sum(matrixB);
+    TwoDimensionalMatrix<int> result_matrix = matrixA.calc_difference(matrixB);
 
     result_matrix.show();
 
