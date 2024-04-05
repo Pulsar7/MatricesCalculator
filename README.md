@@ -90,6 +90,7 @@ result_matrix.show();
 
 ## ToDo
 
+- [ ] Add **inverse matrix**-calculation for 2-Dimensional matrices
 - [ ] Add arithmetic operations for 3-Dimensional matrices
   - [ ] Add multiplication of 3D-matrices
   - [ ] Add addition/subtraction of 3D-matrices
