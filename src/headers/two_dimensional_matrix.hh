@@ -29,6 +29,7 @@ public:
     TwoDimensionalMatrix<T,U> calc_difference(TwoDimensionalMatrix<T,U> matrixB);
     TwoDimensionalMatrix<T,U> calc_product(TwoDimensionalMatrix<T,U> matrixB);
     TwoDimensionalMatrix<T,U> calc_scalar_product(T scalar);
+
     int get_rows();
     int get_columns();
     bool add_row(T* row, size_t columns);

@@ -18,6 +18,7 @@ A C++ project that focuses on the calculation with matrices. Functions:
 - Add two 2D matrices
 - Subtract two 2D matrices
 - Multiply two 2D matrices
+- Multiply 2D-matrix with a scalar
 - Export a given 2D matrix into a static-int array
 
 
