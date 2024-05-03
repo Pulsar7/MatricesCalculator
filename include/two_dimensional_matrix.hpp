@@ -23,8 +23,10 @@ template <typename T, typename U = std::enable_if_t<is_numeric<T>::value>> class
     TwoDimensionalMatrix<T, U> calc_product(TwoDimensionalMatrix<T, U> matrixB);
     TwoDimensionalMatrix<T, U> calc_scalar_product(T scalar);
 
-    size_t get_rows();
-    size_t get_columns();
+    size_t get_rows_size();
+    size_t get_columns_size();
+    T get_element(size_t row, size_t column);
+    void set_element(size_t row, size_t column, T value);
     bool add_row(T *row, size_t columns);
     void show();
     void export_as_static_array(T **static_array);

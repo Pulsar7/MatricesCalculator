@@ -12,18 +12,18 @@ template <typename T, typename U>
 TwoDimensionalMatrix<T, U> TwoDimensionalMatrix<T, U>::calc_sum(TwoDimensionalMatrix<T, U> matrixB)
 {
     TwoDimensionalMatrix<T, U> resultMatrix;
-    if (this->get_rows() != matrixB.get_rows() || this->get_columns() != matrixB.get_columns())
+    if (this->get_rows_size() != matrixB.get_rows_size() || this->get_columns_size() != matrixB.get_columns_size())
     {
         std::cout << "The matrices must have the same dimensions" << std::endl;
         return resultMatrix;
     }
 
-    for (size_t i = 0; i < this->get_rows(); ++i)
+    for (size_t i = 0; i < this->get_rows_size(); ++i)
     {
         std::vector<T> row;
-        for (size_t j = 0; j < this->get_columns(); ++j)
+        for (size_t j = 0; j < this->get_columns_size(); ++j)
         {
-            row.push_back(this->matrix[i][j] + matrixB.matrix[i][j]);
+            row.push_back(this->matrix[i][j] + matrixB.get_element(i, j));
         }
         resultMatrix.matrix.push_back(row);
     }
@@ -34,18 +34,18 @@ template <typename T, typename U>
 TwoDimensionalMatrix<T, U> TwoDimensionalMatrix<T, U>::calc_difference(TwoDimensionalMatrix<T, U> matrixB)
 {
     TwoDimensionalMatrix<T, U> resultMatrix;
-    if (this->get_rows() != matrixB.get_rows() || this->get_columns() != matrixB.get_columns())
+    if (this->get_rows_size() != matrixB.get_rows_size() || this->get_columns_size() != matrixB.get_columns_size())
     {
         std::cout << "The matrices must have the same dimensions" << std::endl;
         return resultMatrix;
     }
 
-    for (size_t i = 0; i < this->get_rows(); ++i)
+    for (size_t i = 0; i < this->get_rows_size(); ++i)
     {
         std::vector<T> row;
-        for (size_t j = 0; j < this->get_columns(); ++j)
+        for (size_t j = 0; j < this->get_columns_size(); ++j)
         {
-            row.push_back(this->matrix[i][j] - matrixB.matrix[i][j]);
+            row.push_back(this->matrix[i][j] - matrixB.get_element(i, j));
         }
         resultMatrix.matrix.push_back(row);
     }
@@ -56,20 +56,20 @@ template <typename T, typename U>
 TwoDimensionalMatrix<T, U> TwoDimensionalMatrix<T, U>::calc_product(TwoDimensionalMatrix<T, U> matrixB)
 {
     TwoDimensionalMatrix<T, U> resultMatrix;
-    if (this->get_columns() != matrixB.get_rows())
+    if (this->get_columns_size() != matrixB.get_rows_size())
     {
         std::cout
             << "The number of columns of the first matrix must be equal to the number of rows of the second matrix"
             << std::endl;
         return resultMatrix;
     }
-    for (size_t i = 0; i < this->get_rows(); ++i)
+    for (size_t i = 0; i < this->get_rows_size(); ++i)
     {
         std::vector<T> row;
         T element = 0;
-        for (size_t j = 0; j < matrixB.get_columns(); ++j)
+        for (size_t j = 0; j < matrixB.get_columns_size(); ++j)
         {
-            element += this->matrix[i][j] * matrixB.matrix[j][i];
+            element += this->matrix[i][j] * matrixB.get_element(j, i);
         }
         row.push_back(element);
         resultMatrix.matrix.push_back(row);
@@ -80,10 +80,10 @@ TwoDimensionalMatrix<T, U> TwoDimensionalMatrix<T, U>::calc_product(TwoDimension
 template <typename T, typename U> TwoDimensionalMatrix<T, U> TwoDimensionalMatrix<T, U>::calc_scalar_product(T scalar)
 {
     TwoDimensionalMatrix<T, U> resultMatrix;
-    for (size_t i = 0; i < this->get_rows(); ++i)
+    for (size_t i = 0; i < this->get_rows_size(); ++i)
     {
         std::vector<T> row;
-        for (size_t j = 0; j < this->get_columns(); ++j)
+        for (size_t j = 0; j < this->get_columns_size(); ++j)
         {
             row.push_back(this->matrix[i][j] * scalar);
         }
@@ -92,14 +92,24 @@ template <typename T, typename U> TwoDimensionalMatrix<T, U> TwoDimensionalMatri
     return resultMatrix;
 }
 
-template <typename T, typename U> size_t TwoDimensionalMatrix<T, U>::get_rows()
+template <typename T, typename U> size_t TwoDimensionalMatrix<T, U>::get_rows_size()
 {
     return this->matrix.size();
 }
 
-template <typename T, typename U> size_t TwoDimensionalMatrix<T, U>::get_columns()
+template <typename T, typename U> size_t TwoDimensionalMatrix<T, U>::get_columns_size()
 {
     return this->matrix[0].size();
+}
+
+template <typename T, typename U> T TwoDimensionalMatrix<T, U>::get_element(size_t row, size_t column)
+{
+    return this->matrix[row][column];
+}
+
+template <typename T, typename U> void TwoDimensionalMatrix<T, U>::set_element(size_t row, size_t column, T value)
+{
+    this->matrix[row][column] = value;
 }
 
 template <typename T, typename U> bool TwoDimensionalMatrix<T, U>::add_row(T *row, size_t row_size)
@@ -142,9 +152,9 @@ template <typename T, typename U> void TwoDimensionalMatrix<T, U>::show()
 
 template <typename T, typename U> void TwoDimensionalMatrix<T, U>::export_as_static_array(T **static_array)
 {
-    for (size_t i = 0; i < this->get_rows(); ++i)
+    for (size_t i = 0; i < this->get_rows_size(); ++i)
     {
-        for (size_t j = 0; j < this->get_columns(); ++j)
+        for (size_t j = 0; j < this->get_columns_size(); ++j)
         {
             static_array[i][j] = this->matrix[i][j];
         }
