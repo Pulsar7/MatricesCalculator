@@ -1,5 +1,5 @@
-#ifndef DYNAMIC_ARRAYS_HH
-#define DYNAMIC_ARRAYS_HH
+#ifndef DYNAMIC_ARRAYS_HPP
+#define DYNAMIC_ARRAYS_HPP
 #include <stdlib.h>
 #include <stdio.h>
 

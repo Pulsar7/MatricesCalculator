@@ -1,7 +1,6 @@
-#include "headers/main.hh"
+#include "../include/two_dimensional_matrix.hpp"
 
-
-int main(int argc, const char** argv) {
+int main() {
     TwoDimensionalMatrix<int> matrix;
 
     int row[] = {1,2,3,4,5,6,7};

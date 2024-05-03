@@ -1,6 +1,6 @@
-#ifndef CUSTOM_MATRIX_HH
-#define CUSTOM_MATRIX_HH
-#include "dynamic_arrays.hh"
+#ifndef CUSTOM_MATRIX_HPP
+#define CUSTOM_MATRIX_HPP
+#include "dynamic_arrays.hpp"
 #include <iostream>
 
 
