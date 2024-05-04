@@ -22,6 +22,7 @@ template <typename T, typename U = std::enable_if_t<is_numeric<T>::value>> class
     TwoDimensionalMatrix<T, U> calc_difference(TwoDimensionalMatrix<T, U> matrixB);
     TwoDimensionalMatrix<T, U> calc_product(TwoDimensionalMatrix<T, U> matrixB);
     TwoDimensionalMatrix<T, U> calc_scalar_product(T scalar);
+    TwoDimensionalMatrix<T, U> calc_transpose();
 
     size_t get_rows_size();
     size_t get_columns_size();

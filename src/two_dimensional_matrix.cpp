@@ -92,6 +92,21 @@ template <typename T, typename U> TwoDimensionalMatrix<T, U> TwoDimensionalMatri
     return resultMatrix;
 }
 
+template <typename T, typename U> TwoDimensionalMatrix<T, U> TwoDimensionalMatrix<T, U>::calc_transpose()
+{
+    TwoDimensionalMatrix<T, U> resultMatrix;
+    for (size_t i = 0; i < this->get_columns_size(); ++i)
+    {
+        std::vector<T> row;
+        for (size_t j = 0; j < this->get_rows_size(); ++j)
+        {
+            row.push_back(this->matrix[j][i]);
+        }
+        resultMatrix.matrix.push_back(row);
+    }
+    return resultMatrix;
+}
+
 template <typename T, typename U> size_t TwoDimensionalMatrix<T, U>::get_rows_size()
 {
     return this->matrix.size();

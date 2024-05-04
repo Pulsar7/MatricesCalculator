@@ -25,6 +25,10 @@ int main()
     std::cout << "Matrix A - (Matrix A * 1.5): \n";
     differenceMatrix.show();
 
+    TwoDimensionalMatrix<double> transposedMatrix = matrixA.calc_transpose();
+    std::cout << "Transposed Matrix A: \n";
+    transposedMatrix.show();
+
     auto delta = std::chrono::system_clock::now() - start;
     auto runtime = std::chrono::duration_cast<std::chrono::microseconds>(delta).count();
     std::cout << "Runtime=" << runtime << " microseconds" << std::endl;
