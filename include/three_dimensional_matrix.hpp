@@ -1,9 +1,9 @@
-#ifndef THREE_DIMENSIONAL_MATRIX_HH
-#define THREE_DIMENSIONAL_MATRIX_HH
+#ifndef THREE_DIMENSIONAL_MATRIX_HPP
+#define THREE_DIMENSIONAL_MATRIX_HPP
 #include <type_traits>
 
-
 // Define a type trait to check if a type is a numeric type
+/*
 template <typename T>
 struct is_numeric {
     static constexpr bool value =
@@ -21,9 +21,7 @@ class ThreeDimensionalMatrix {
 public:
     ThreeDimensionalMatrix(); // Constructor
     ~ThreeDimensionalMatrix(); // Desctructor
-
-
-
 };
+*/
 
 #endif // THREE_DIMENSIONAL_MATRIX_HH
